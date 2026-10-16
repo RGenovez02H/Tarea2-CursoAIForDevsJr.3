@@ -5,70 +5,83 @@
 **Estudiante:** Renzo Genovez  
 **Curso:** AI For Devs Jr. 3
 
-## 1. Objetivo del proyecto
+## 1. Aplicación o mini-juego funcional
 
-Desarrollar un mini-juego en Python con Pygame en el que el jugador controla una nave espacial para atrapar estrellas y evitar meteoritos. El juego incorpora puntuación, vidas, dificultad progresiva, pantalla inicial, pantalla de fin de partida y guardado local del récord.
+Desarrollé *Atrapa las estrellas*, un mini-juego en Python utilizando Pygame. El objetivo es controlar una nave espacial para atrapar estrellas, acumular puntos y evitar meteoritos.
 
-## 2. Uso de IA e iteraciones
+El juego cuenta con tres vidas iniciales, puntuación de 10 puntos por estrella atrapada, dificultad progresiva, pantalla de inicio, pantalla de fin de partida y guardado local del récord en `record.txt`.
 
-La IA se utilizó como copiloto para orientar el desarrollo, explicar partes del código y proponer mejoras. Las siguientes etapas resumen el proceso; los prompts son ejemplos de referencia y deben ajustarse a las instrucciones que realmente se utilizaron.
+El proyecto busca aplicar los conceptos de programación mediante un juego interactivo. Las instrucciones para instalar y ejecutar el programa, así como sus controles, se encuentran en el archivo `README.md`.
 
-### Iteración 1: estructura inicial
+## 2. Evidencia de vibecoding (prompts)
 
-**Prompt de referencia:**  
-“Crea un mini-juego en Python con Pygame llamado Atrapa las estrellas. Incluye una ventana, una nave que se mueva horizontalmente, estrellas que caigan y una puntuación. Organiza el código en clases y explica las partes principales”.
+Durante el desarrollo utilicé la inteligencia artificial como copiloto para crear la estructura inicial del juego, agregar funcionalidades y mejorar su comportamiento. A continuación, se describen tres etapas del proceso.
 
-**Objetivo:** crear la base del juego, los controles y el ciclo principal.
+### Prompt 1: estructura inicial
 
-### Iteración 2: nuevas mecánicas
+**Prompt de referencia:**
 
-**Prompt de referencia:**  
-“Agrega vidas, meteoritos que resten vidas, una pantalla inicial, una pantalla de fin de partida y la opción de reiniciar. Guarda el récord en un archivo local”.
+“Crea un mini-juego en Python con Pygame llamado Atrapa las estrellas. Incluye una ventana, una nave que se mueva horizontalmente, estrellas que caigan y un sistema de puntuación. Organiza el código en clases y explica las partes principales”.
 
-**Objetivo:** incorporar reglas adicionales y persistencia del récord.
+**¿Qué solicité?**
 
-### Iteración 3: ajuste de dificultad
+Crear la base del juego, el movimiento de la nave y la puntuación.
 
-**Problema identificado:** los objetos que caían se percibían demasiado rápidos.
+**¿Por qué?**
 
-**Prompt de referencia:**  
+Necesitaba una estructura inicial que me permitiera desarrollar el juego y comprender cómo se organizan sus componentes.
+
+### Prompt 2: incorporación de funcionalidades
+
+**Prompt de referencia:**
+
+“Agrega meteoritos que resten vidas, tres vidas iniciales, una pantalla de inicio, una pantalla de fin de partida y la opción de reiniciar. Guarda el récord en un archivo local”.
+
+**¿Qué solicité?**
+
+Incorporar obstáculos, vidas, pantallas y guardado del récord.
+
+**¿Por qué?**
+
+Quería ampliar la interacción y las reglas del juego para obtener una versión más completa.
+
+### Prompt 3: ajuste de dificultad
+
+**Prompt de referencia:**
+
 “Los objetos caen demasiado rápido. Reduce su velocidad y conserva el movimiento horizontal, las colisiones y la puntuación. Explica qué modificación realizaste”.
 
-**Cambio presente en el código:** el método `Objeto.actualizar()` contiene la instrucción `self.y += self.velocidad * 0.4`, que reduce el desplazamiento vertical por actualización al 40 % del valor de velocidad calculado.
+**¿Qué solicité?**
 
-**Validación necesaria:** ejecutar el juego y comprobar que el ritmo sea adecuado y que las demás mecánicas sigan funcionando.
+Ajustar la velocidad de caída sin modificar las demás mecánicas.
 
-## 3. Comprensión del código
+**¿Por qué?**
 
-- **Configuración:** define dimensiones de la ventana, FPS, vidas, puntos por estrella y colores.
-- **Clase `Jugador`:** controla la posición de la nave, su movimiento y los límites de la pantalla.
-- **Clase `Objeto`:** representa estrellas y meteoritos, calcula su posición y velocidad y dibuja sus figuras.
-- **Clase `Juego`:** controla los estados de la partida, la creación de objetos, las colisiones, las vidas, la puntuación y la interfaz.
-- **Funciones de récord:** `cargar_record()` lee el récord guardado y `guardar_record()` intenta escribirlo en `record.txt`.
-- **Método `actualizar(dt)`:** utiliza el tiempo transcurrido para regular la frecuencia de aparición de objetos.
+La solicitud se centró en un problema específico e indicó qué funcionalidades debían conservarse, facilitando la identificación del cambio realizado.
 
-Una observación técnica es que el movimiento vertical se calcula por actualización y no se multiplica por `dt`. Por ello, su velocidad real puede depender del rendimiento y de la frecuencia efectiva de actualización.
+## 3. Iteración y mejora
 
-## 4. Beneficios y riesgos del uso de IA
+Una mejora identificada en el código fue el ajuste del desplazamiento vertical de los objetos. En el método `Objeto.actualizar()` aparece la siguiente instrucción:
 
-### Beneficios
+`self.y += self.velocidad * 0.4`
 
-- Acelera la creación de una primera versión funcional.
-- Ayuda a comprender clases, funciones y lógica del juego.
-- Permite explorar soluciones para problemas concretos.
-- Facilita la documentación y la propuesta de pruebas.
+Esta expresión reduce el desplazamiento vertical por actualización al 40 % del valor de velocidad calculado. El propósito del cambio es controlar la velocidad de caída y mejorar la experiencia de juego.
 
-### Riesgos
+Esta iteración demuestra cómo se puede identificar un comportamiento que necesita ajustes, solicitar una modificación concreta a la IA y revisar el código resultante. Para confirmar que la mejora es adecuada, es necesario ejecutar el juego y comprobar que las colisiones, la puntuación y las vidas sigan funcionando correctamente.
 
-- El código generado puede contener errores o no cumplir exactamente los requisitos.
-- Un cambio en la velocidad puede afectar la dificultad y la experiencia de juego.
-- La apariencia de funcionamiento correcto no sustituye las pruebas.
-- Aceptar código sin comprenderlo dificulta el mantenimiento y la corrección de errores.
+## 4. Validación del resultado
 
-Por estas razones, las sugerencias de IA deben revisarse, comprenderse y probarse. La responsabilidad de validar el resultado final corresponde al desarrollador.
+Para comprobar el funcionamiento del juego, lo ejecuté y revisé sus principales funcionalidades. Probé los controles para mover la nave, la puntuación al atrapar estrellas y la pérdida de vidas al chocar con meteoritos o dejar pasar estrellas. También comprobé el funcionamiento de las pantallas de inicio y fin de partida, la opción de reiniciar y el guardado del récord.
 
+Durante la revisión del código identifiqué una limitación en el movimiento de los objetos: la posición vertical se actualiza sin utilizar directamente el tiempo transcurrido (`dt`). Esto podría provocar diferencias en la velocidad de caída según el rendimiento del juego.
+
+Para ajustar este comportamiento, se utiliza la expresión `self.velocidad * 0.4` en el método `Objeto.actualizar()`, que reduce el desplazamiento vertical por actualización. Considero importante comprobar que este ajuste mantenga una dificultad adecuada y que las colisiones y demás funcionalidades continúen funcionando correctamente.
 ## 5. Reflexión final
 
-La IA generativa puede acelerar el desarrollo y servir como apoyo para comprender código, explorar soluciones y mejorar una aplicación. Sin embargo, no reemplaza el criterio técnico del desarrollador. La experiencia de ajustar la velocidad demuestra la importancia de identificar un problema, aplicar un cambio concreto y comprobar que la mejora no afecte las demás funcionalidades.
+El desarrollo de *Atrapa las estrellas* me permitió conocer cómo la inteligencia artificial generativa puede utilizarse como copiloto para crear funcionalidades, explicar código y proponer mejoras mediante instrucciones específicas.
 
-El uso responsable de IA implica revisar las propuestas, comprender las modificaciones y validar el comportamiento del programa antes de considerar terminada la tarea.
+Entre las ventajas del vibecoding identifico la rapidez para desarrollar una primera versión, la posibilidad de explorar soluciones y el apoyo para comprender conceptos de programación. Entre sus limitaciones están la posibilidad de recibir sugerencias incorrectas y el riesgo de incorporar código sin comprenderlo o probarlo adecuadamente.
+
+Comprendo el objetivo general del juego, las reglas de puntuación y vidas, los controles y la función principal de las clases `Jugador`, `Objeto` y `Juego`. Necesito reforzar aspectos como el manejo del tiempo en Pygame, la lógica de las colisiones y la actualización de los objetos.
+
+Concluyo que la IA es una herramienta útil para apoyar el desarrollo de software, pero no sustituye la comprensión ni la responsabilidad del programador. Es necesario revisar las sugerencias, entender los cambios y realizar pruebas para validar el resultado final.
